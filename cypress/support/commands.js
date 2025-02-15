@@ -70,10 +70,33 @@ Cypress.Commands.add("validateCartButton", () =>{
 })
 
 //Footer Validation
-Cypress.Commands.add("validateFooter", () =>{
+Cypress.Commands.add("validateFooter", () => {
+
     footer.socialMedias().should("be.visible");
     footer.copyrightNotice().should("be.visible");
-})
+
+    cy.fixture("footer.json").as("footer");
+
+    cy.get("@footer").then((footerData) => {
+        const socialMediaLinks = footerData.socialMediaLinks; 
+
+        // Validate if URLs are equal to footer fixture
+        footer.socialMedias().each(($link, index) => {
+            cy.wrap($link)
+                .invoke("attr", "href") 
+                .then((href) => {
+                    expect(href).to.equal(socialMediaLinks[index].link);
+                });
+        });
+
+        footer.copyrightNotice() // Validate copyright text
+            .invoke("text")
+            .then((text) => {
+                expect(text.trim()).to.equal(footerData.copyright.notice);
+            });
+    });
+});
+
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
