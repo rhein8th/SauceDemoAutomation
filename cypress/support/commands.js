@@ -1,12 +1,14 @@
 import LoginPage from "../e2e/pages/LoginPage";
 import HamburgerMenu from "../e2e/sharedComponents/HamburgerMenu";
 import CartNavigation from "../e2e/sharedComponents/CartNavigation";
+import Footer from "../e2e/sharedComponents/Footer";
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 
 const logIn = new LoginPage();
 const hamburger = new HamburgerMenu();
 const cart = new CartNavigation();
+const footer = new Footer();
 
 //Clearing App Data
 Cypress.Commands.add("clearAppData", () => {
@@ -61,11 +63,40 @@ Cypress.Commands.add("validateHamburgerMenu", () =>{
 
 })
 
-//Cart Button
+//Cart Button Validation
 Cypress.Commands.add("validateCartButton", () =>{
     cart.cartBtn().should("be.visible").click();
     cy.url().should("include", "/cart");
 })
+
+//Footer Validation
+Cypress.Commands.add("validateFooter", () => {
+
+    footer.socialMedias().should("be.visible");
+    footer.copyrightNotice().should("be.visible");
+
+    cy.fixture("footer.json").as("footer");
+
+    cy.get("@footer").then((footerData) => {
+        const socialMediaLinks = footerData.socialMediaLinks; 
+
+        // Validate if URLs are equal to footer fixture
+        footer.socialMedias().each(($link, index) => {
+            cy.wrap($link)
+                .invoke("attr", "href") 
+                .then((href) => {
+                    expect(href).to.equal(socialMediaLinks[index].link);
+                });
+        });
+
+        footer.copyrightNotice() // Validate copyright text
+            .invoke("text")
+            .then((text) => {
+                expect(text.trim()).to.equal(footerData.copyright.notice);
+            });
+    });
+});
+
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
