@@ -1,0 +1,13 @@
+{
+    "socialMediaLinks":
+    [
+        { "link": "https://twitter.com/saucelabs" },
+        { "link": "https://www.facebook.com/saucelabs" },
+        { "link": "https://www.linkedin.com/company/sauce-labs/"}
+    ],
+    
+    "copyright": {
+      "notice": "© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy"
+    }
+}
+
