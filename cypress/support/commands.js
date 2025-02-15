@@ -6,12 +6,15 @@ import HamburgerMenu from "../e2e/sharedComponents/HamburgerMenu";
 const logIn = new LoginPage();
 const hamburger = new HamburgerMenu();
 
+//Clearing App Data
 Cypress.Commands.add("clearAppData", () => {
     cy.clearCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 });
 
+
+//Login
 Cypress.Commands.add("login", () => {
     cy.fixture("users").then((users) => {
         const username = users.validUser.validUsername;
@@ -47,9 +50,9 @@ Cypress.Commands.add("validateHamburgerMenu", () =>{
                     .then((text) => {
                         expect(text.trim()).to.equal(item);
                         //cy.log(item)
-                    });      
-
+                    });
                 });
+                
             })
         hamburger.closeSideMenuBtn().click();
         hamburger.sideMenu().should("not.be.visible");
