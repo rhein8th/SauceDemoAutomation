@@ -15,7 +15,7 @@ before(()=>{
 describe("Login Page Test Suite", ()=>{
 
     it("Validate Login page",()=>{
-        logIn.pageTitle().should("be.visible");
+        logIn.logo().should("be.visible");
         logIn.usernameInput().should("be.visible");
         logIn.passwordInput().should("be.visible");
         logIn.loginBtn().should("be.visible");
