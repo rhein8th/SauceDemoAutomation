@@ -1,18 +1,28 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
+import LoginPage from "../e2e/pages/LoginPage";
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
+
+const logIn = new LoginPage();
+
+Cypress.Commands.add("clearAppData", () => {
+    cy.clearCookies();
+    cy.clearAllLocalStorage();
+    cy.clearAllSessionStorage();
+});
+
+Cypress.Commands.add("login", () => {
+    cy.fixture("users").then((users) => {
+        const username = users.validUser.validUsername;
+        const password = users.validUser.validPassword;
+
+            cy.visit("/");
+            logIn.usernameInput().clear().type(username);
+            logIn.passwordInput().clear().type(password);
+            logIn.loginBtn().click();
+            cy.url().should("include", "/inventory");
+            // cy.url({ timeout: 10000 }).should("include", "/inventory");
+    });
+});
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
