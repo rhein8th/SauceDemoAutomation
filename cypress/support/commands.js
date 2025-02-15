@@ -1,10 +1,12 @@
 import LoginPage from "../e2e/pages/LoginPage";
 import HamburgerMenu from "../e2e/sharedComponents/HamburgerMenu";
+import CartNavigation from "../e2e/sharedComponents/CartNavigation";
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 
 const logIn = new LoginPage();
 const hamburger = new HamburgerMenu();
+const cart = new CartNavigation();
 
 //Clearing App Data
 Cypress.Commands.add("clearAppData", () => {
@@ -20,11 +22,11 @@ Cypress.Commands.add("login", () => {
         const username = users.validUser.validUsername;
         const password = users.validUser.validPassword;
 
-            cy.visit("/");
-            logIn.usernameInput().clear().type(username);
-            logIn.passwordInput().clear().type(password);
-            logIn.loginBtn().click();
-            cy.url().should("include", "/inventory");
+        cy.visit("/");
+        logIn.usernameInput().clear().type(username);
+        logIn.passwordInput().clear().type(password);
+        logIn.loginBtn().click();
+        cy.url().should("include", "/inventory");
     });
 });
 
@@ -35,28 +37,34 @@ Cypress.Commands.add("validateHamburgerMenu", () =>{
     cy.fixture("menu.json").as("navs");
     
         //Verifying Navigation Sidebar if visible
-        hamburger.hamburgerMenu().click();
-        hamburger.sideMenu().should("be.visible");
+    hamburger.hamburgerMenu().click();
+    hamburger.sideMenu().should("be.visible");
 
     //Verifying Hamburger Menu Text if equal to the Menu Data in fixtures
-            cy.get("@navs").then((menu) => {
-                const menuItems = menu.menuItems;
+        cy.get("@navs").then((menu) => {
+        const menuItems = menu.menuItems;
             
-                //Iterate through the menu items
-                menuItems.forEach((item, index) => {
-                    // Validate main menu item text
-                    hamburger.menuList().eq(index)
-                    .invoke("text")
-                    .then((text) => {
-                        expect(text.trim()).to.equal(item);
-                        //cy.log(item)
-                    });
+            //Iterate through the menu items
+            menuItems.forEach((item, index) => {
+                // Validate main menu item text
+                hamburger.menuList().eq(index)
+                .invoke("text")
+                .then((text) => {
+                    expect(text.trim()).to.equal(item);
+                    //cy.log(item)
                 });
+            });
                 
-            })
-        hamburger.closeSideMenuBtn().click();
-        hamburger.sideMenu().should("not.be.visible");
+         })
+    hamburger.closeSideMenuBtn().click();
+    hamburger.sideMenu().should("not.be.visible");
 
+})
+
+//Cart Button
+Cypress.Commands.add("validateCartButton", () =>{
+    cart.cartBtn().should("be.visible").click();
+    cy.url().should("include", "/cart");
 })
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
