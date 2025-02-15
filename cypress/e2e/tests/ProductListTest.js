@@ -21,6 +21,10 @@ describe("Product List Page Test Suite", ()=>{
         cy.validateCartButton();
      })
 
+    it("Validate Footer",()=>{
+    cy.validateFooter();
+    })
+
     it("Validate Product List Page",()=>{
         product.pageTitle().should("be.visible");
     })
