@@ -17,6 +17,10 @@ describe("Product List Page Test Suite", ()=>{
        cy.validateHamburgerMenu();
     })
 
+    it("Validate Cart Button",()=>{
+        cy.validateCartButton();
+     })
+
     it("Validate Product List Page",()=>{
         product.pageTitle().should("be.visible");
     })
