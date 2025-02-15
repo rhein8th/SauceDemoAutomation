@@ -20,7 +20,6 @@ Cypress.Commands.add("login", () => {
             logIn.passwordInput().clear().type(password);
             logIn.loginBtn().click();
             cy.url().should("include", "/inventory");
-            // cy.url({ timeout: 10000 }).should("include", "/inventory");
     });
 });
 // -- This is a child command --
