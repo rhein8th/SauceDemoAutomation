@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 import LoginPage from "../pages/LoginPage";
 
@@ -21,10 +21,6 @@ describe("Login Page Test Suite", ()=>{
         logIn.loginBtn().should("be.visible");
     });
 
-    it("Validate Successful Login",()=>{
-            cy.login();
-    });
-
     it("Validate Invalid Credentials",()=>{
         cy.fixture("users").then((users) => {
             const username = users.invalidUser.invalidUsername;
@@ -38,7 +34,12 @@ describe("Login Page Test Suite", ()=>{
                 logIn.passwordInput().should("have.class", "input_error");
                 cy.url().should("not.include", "/inventory");
         });
-});
+    });
+
+    it("Validate Successful Login",()=>{
+            cy.login();
+    });
+
 
 
 });
