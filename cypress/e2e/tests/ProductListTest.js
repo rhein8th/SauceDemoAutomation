@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 import ProductListPage from "../pages/ProductListPage";
     const product = new ProductListPage();
 
