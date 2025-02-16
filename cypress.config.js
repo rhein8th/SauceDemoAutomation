@@ -11,13 +11,14 @@ module.exports = defineConfig({
   }, 
   e2e: {
     // Default base URL for the application under test
-    baseUrl: "https://www.saucedemo.com/",
+    baseUrl: "https://www.saucedemo.com",
+    chromeWebSecurity: false,
 
     setupNodeEvents(on, config) {
       // Dynamically set the base URL or other configurations based on the environment
       const environment = config.env.environment || "dev"; // Default to 'staging'
       const environments = {
-        dev: "https://www.saucedemo.com/"
+        dev: "https://www.saucedemo.com"
         //production: "https://www.saucedemo.com/",
       };
 

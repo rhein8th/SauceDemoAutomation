@@ -1,6 +1,6 @@
 class Login
     {
-        pageTitle() { return cy.get(".login_logo"); }
+        logo() { return cy.get(".login_logo"); }
         usernameInput() { return cy.get("#user-name"); }
         passwordInput() { return cy.get("#password"); }
         loginBtn() { return cy.get("input[id='login-button']"); }

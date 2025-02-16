@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 import LoginPage from "../pages/LoginPage";
 
@@ -15,14 +15,10 @@ before(()=>{
 describe("Login Page Test Suite", ()=>{
 
     it("Validate Login page",()=>{
-        logIn.pageTitle().should("be.visible");
+        logIn.logo().should("be.visible");
         logIn.usernameInput().should("be.visible");
         logIn.passwordInput().should("be.visible");
         logIn.loginBtn().should("be.visible");
-    });
-
-    it("Validate Successful Login",()=>{
-            cy.login();
     });
 
     it("Validate Invalid Credentials",()=>{
@@ -38,7 +34,12 @@ describe("Login Page Test Suite", ()=>{
                 logIn.passwordInput().should("have.class", "input_error");
                 cy.url().should("not.include", "/inventory");
         });
-});
+    });
+
+    it("Validate Successful Login",()=>{
+            cy.login();
+    });
+
 
 
 });
