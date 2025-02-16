@@ -6,6 +6,7 @@ import ProductListPage from "../pages/ProductListPage";
 before(()=>{
     cy.clearAppData();
     //cy.login();
+    cy.fixture("product.json").as("prod");
 })
 
 beforeEach(() => {
@@ -131,8 +132,13 @@ describe("Product List Page Test Suite", ()=>{
     });
 
     //validate adding product to cart
-
-
-    
+    it.only("Validate Adding Product to Cart", () => {
+ 
+        cy.get("@prod").then((product) => {
+            product.productNames.forEach(function(element){
+            cy.selectProduct(element)
+          });
+        })
+    });
 
 });

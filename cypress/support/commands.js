@@ -2,6 +2,7 @@ import LoginPage from "../e2e/pages/LoginPage";
 import HamburgerMenu from "../e2e/sharedComponents/HamburgerMenu";
 import CartNavigation from "../e2e/sharedComponents/CartNavigation";
 import Footer from "../e2e/sharedComponents/Footer";
+import ProductListPage from "../e2e/pages/ProductListPage";
 
 // -- This is a parent command --
 
@@ -9,6 +10,7 @@ const logIn = new LoginPage();
 const hamburger = new HamburgerMenu();
 const cart = new CartNavigation();
 const footer = new Footer();
+const productList = new ProductListPage();
 
 //Clearing App Data
 Cypress.Commands.add("clearAppData", () => {
@@ -99,15 +101,16 @@ Cypress.Commands.add("validateFooter", () => {
 });
 
 //Adding product to cart
-Cypress.Commands.add("selectProduct", (productName) => { 
+Cypress.Commands.add("selectProduct", (productNameFT) => { 
+    let clickCount = 0; 
 
-    cy.get("h4.card-title").each(($el, index, $list) => {
-        if ($el.text().includes(productName))
-        {
-         cy.get("button.btn.btn-info").eq(index).click()
-    
+    productList.productName().each(($el, index) => {
+        if ($el.text().includes(productNameFT)) {
+            productList.addToCartBtn().eq(index).click();
+            clickCount++; //click counter
         }
-    })
+    }).then(() => {
+        cart.cartBtn().should("have.text", clickCount.toString()); //cart button validation
+    });
+});
 
-     
- })
