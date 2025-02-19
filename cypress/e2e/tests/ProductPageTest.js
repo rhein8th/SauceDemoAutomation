@@ -18,7 +18,7 @@ beforeEach(() => {
 
 describe("Product Page Test Suite", () => {
 
-    it("Validate Product Page", () => {
+    it("Validate Product Page if same details with the clicked product", () => {
         cy.fixture("product.json").then((productData) => {
             const targetProduct = productData.productName;
             productList.productCtnr().should("be.visible");
@@ -69,10 +69,20 @@ describe("Product Page Test Suite", () => {
         product.productDesc().should("be.visible");
         product.productPrice().should("be.visible");
         product.addToCartBtn().should("be.visible")
+
+        product.addToCartBtn().click()
+        cart.cartBtn().should("have.text", "1")
+        product.addToCartBtn().should("have.text", "Remove")
+
+        product.addToCartBtn().click()
+        cart.cartBtn().should("have.text", "")
+        product.addToCartBtn().should("have.text", "Add to cart")
+       
     }); 
   
 
     //validate adding to cart & cart button text
+  
     //validate removing to cart & cart button text
     //validate back button
 });
