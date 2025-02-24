@@ -1,4 +1,4 @@
-class Cart
+class Product
     {
 
     logo() { return cy.get(".app_logo"); }
@@ -12,4 +12,4 @@ class Cart
     addToCartBtn() { return cy.get("button.btn_inventory"); }
     
     }
-    export default Cart;
+    export default Product;
