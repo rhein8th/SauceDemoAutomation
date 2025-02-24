@@ -9,7 +9,7 @@ class Product
     productName() { return cy.get(".inventory_details_name"); }
     productDesc() { return cy.get(".inventory_details_desc"); }
     productPrice() { return cy.get(".inventory_details_price"); }
-    addToCartBtn() { return cy.get("#add-to-cart"); }
+    addToCartBtn() { return cy.get("button.btn_inventory"); }
     
     }
     export default Product;
