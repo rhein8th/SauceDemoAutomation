@@ -115,7 +115,6 @@ Cypress.Commands.add("selectProduct", (productNameFT) => {
 
 
 //Proceeding to Product page from fixture data
-
 Cypress.Commands.add("proceedProductpage", () => {
     cy.fixture("product.json").then((productData) => {
         const targetProduct = productData.productName;

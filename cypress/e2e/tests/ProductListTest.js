@@ -133,9 +133,8 @@ describe("Product List Page Test Suite", ()=>{
     });
 
     //validate adding product to cart
-
-    it.only("Validate Adding Product to Cart", () => {
-        let clickCount = 0; // Declare clickCount here (less common)
+    it("Validate Adding Product to Cart", () => {
+        let clickCount = 0;
         cy.fixture("product.json").as("prod");
         cy.get("@prod").then((product) => {
             product.productNames.forEach((element, index) => {
