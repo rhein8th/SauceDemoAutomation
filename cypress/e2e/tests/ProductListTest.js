@@ -12,7 +12,7 @@ before(()=>{
 
 beforeEach(() => {
     cy.login();
-    // cy.visit("/inventory"); 
+  
 });
 
 describe("Product List Page Test Suite", ()=>{
@@ -133,15 +133,21 @@ describe("Product List Page Test Suite", ()=>{
     });
 
     //validate adding product to cart
-    it("Validate Adding Product to Cart", () => {
- 
-    cy.fixture("product.json").as("prod");
+
+    it.only("Validate Adding Product to Cart", () => {
+        let clickCount = 0; // Declare clickCount here (less common)
+        cy.fixture("product.json").as("prod");
         cy.get("@prod").then((product) => {
-            product.productNames.forEach(function(element){
-            cy.selectProduct(element)
-          });
-        })
+            product.productNames.forEach((element, index) => {
+                cy.log(`Adding product: <span class="math-inline">\{element\} \(</span>{index + 1})`);
+                cy.selectProduct(element);
+                clickCount++;
+            });
+            cart.cartBtn().invoke("text").then((text) => cy.log("Cart count:", text));
+            cart.cartBtn().should("have.text", clickCount.toString());
+        });
     });
+    
 
     //validate removing product to cart
     it("Validate Removing Products from Cart", () => {

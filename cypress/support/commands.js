@@ -103,18 +103,13 @@ Cypress.Commands.add("validateFooter", () => {
 });
 
 //Adding product to cart
-Cypress.Commands.add("selectProduct", (productNameFT) => { 
-    let clickCount = 0; 
-
+Cypress.Commands.add("selectProduct", (productNameFT) => {
     productList.productName().each(($el, index) => {
-        if ($el.text().includes(productNameFT)) {
+        if ($el.text().trim() === productNameFT) {
+        //if ($el.text().includes(productNameFT)) {
             productList.addToCartBtn().eq(index).click();
-            clickCount++; //click counter
-
-             productList.addToCartBtn().eq(index).should("have.text", "Remove"); //change text validation
+            productList.addToCartBtn().eq(index).should("have.text", "Remove");
         }
-    }).then(() => {
-        cart.cartBtn().should("have.text", clickCount.toString()); //cart button validation
     });
 });
 
