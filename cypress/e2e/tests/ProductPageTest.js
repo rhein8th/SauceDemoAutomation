@@ -19,47 +19,10 @@ beforeEach(() => {
 describe("Product Page Test Suite", () => {
 
     it("Validate Product Page if same details with the clicked product", () => {
-        cy.fixture("product.json").then((productData) => {
-            const targetProduct = productData.productName;
-            productList.productCtnr().should("be.visible");
-    
-            productList.productName().each(($el, index) => {
-                if ($el.text() == targetProduct) {
-                    productList.productName().eq(index).then(($nameElement) => { //get name
-                        const expectedName = $nameElement.text();
-    
-                        productList.productDesc().eq(index).then(($descElement) => { //get desc
-                            const expectedDesc = $descElement.text();
-    
-                            productList.productPrice().eq(index).then(($priceElement) => { //get price
-                                const expectedPrice = $priceElement.text();
-    
-                                productList.productName().eq(index).click(); //click the product that match
-                                product.productCtnr().should("be.visible");
-    
-                                product.productName().then(($productPageNameElement) => { //validation name
-                                    const actualName = $productPageNameElement.text();
-                                    expect(actualName).to.equal(expectedName);
-                                });
-    
-                                product.productDesc().then(($productPageDescElement) => { //validation desc
-                                    const actualDesc = $productPageDescElement.text();
-                                    expect(actualDesc).to.equal(expectedDesc);
-                                });
-    
-                                product.productPrice().then(($productPagePriceElement) => { //validation price
-                                    const actualPrice = $productPagePriceElement.text();
-                                    expect(actualPrice).to.equal(expectedPrice);
-                                });
-                            });
-                        });
-                    }); 
-                } 
-            }); 
-        }); 
+        cy.proceedProductpage();
         cy.validateHamburgerMenu();
         cy.validateCartButton();
-        cy.validateFooter()
+        cy.validateFooter();
 
         product.logo().should("be.visible");
         product.backBtn().should("be.visible");
@@ -68,21 +31,38 @@ describe("Product Page Test Suite", () => {
         product.productName().should("be.visible");
         product.productDesc().should("be.visible");
         product.productPrice().should("be.visible");
-        product.addToCartBtn().should("be.visible")
+        product.addToCartBtn().should("be.visible");
+    });
 
-        product.addToCartBtn().click()
-        cart.cartBtn().should("have.text", "1")
-        product.addToCartBtn().should("have.text", "Remove")
-
-        product.addToCartBtn().click()
-        cart.cartBtn().should("have.text", "")
-        product.addToCartBtn().should("have.text", "Add to cart")
-       
-    }); 
-  
-
-    //validate adding to cart & cart button text
-  
-    //validate removing to cart & cart button text
     //validate back button
+    it("Validate Add Product to Cart", () => {
+    cy.proceedProductpage();
+    
+        //validate adding to cart & cart button text
+        product.addToCartBtn().click();
+        cart.cartBtn().should("have.text", "1");
+        product.addToCartBtn().should("have.text", "Remove");
+    });
+
+    //validate back button
+    it("Validate Remove Product to Cart", () => {
+    cy.proceedProductpage();
+        //validate removing to cart & cart button text
+        product.addToCartBtn().dblclick();
+        //product.addToCartBtn().click();
+        cart.cartBtn().should("not.have.text");
+        product.addToCartBtn().should("have.text", "Add to cart");
+    
+    });
+
+        //validate back button
+    it("Validate Product Page Back Button", () => {
+        cy.proceedProductpage();
+        product.backBtn().click();
+        cy.url().should("include","inventory");
+   
+    });
+
+  
+    
 });
