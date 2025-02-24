@@ -20,10 +20,14 @@ describe("Product Page Test Suite", () => {
 
     it("Validate Product Page if same details with the clicked product", () => {
         cy.proceedProductpage();
+    });
+
+    //validate product page button
+    it("Validate Product Page", () => {
+        cy.proceedProductpage();
         cy.validateHamburgerMenu();
         cy.validateCartButton();
         cy.validateFooter();
-
         product.logo().should("be.visible");
         product.backBtn().should("be.visible");
         product.productCtnr().should("be.visible");
