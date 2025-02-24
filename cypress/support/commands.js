@@ -2,6 +2,8 @@ import LoginPage from "../e2e/pages/LoginPage";
 import HamburgerMenu from "../e2e/sharedComponents/HamburgerMenu";
 import CartNavigation from "../e2e/sharedComponents/CartNavigation";
 import Footer from "../e2e/sharedComponents/Footer";
+import ProductListPage from "../e2e/pages/ProductListPage";
+import ProductPage from "../e2e/pages/ProductPage";
 
 // -- This is a parent command --
 
@@ -9,6 +11,8 @@ const logIn = new LoginPage();
 const hamburger = new HamburgerMenu();
 const cart = new CartNavigation();
 const footer = new Footer();
+const productList = new ProductListPage();
+const product = new ProductPage(); 
 
 //Clearing App Data
 Cypress.Commands.add("clearAppData", () => {
@@ -98,13 +102,63 @@ Cypress.Commands.add("validateFooter", () => {
     });
 });
 
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+//Adding product to cart
+Cypress.Commands.add("selectProduct", (productNameFT) => { 
+    let clickCount = 0; 
+
+    productList.productName().each(($el, index) => {
+        if ($el.text().includes(productNameFT)) {
+            productList.addToCartBtn().eq(index).click();
+            clickCount++; //click counter
+
+             productList.addToCartBtn().eq(index).should("have.text", "Remove"); //change text validation
+        }
+    }).then(() => {
+        cart.cartBtn().should("have.text", clickCount.toString()); //cart button validation
+    });
+});
+
+
+//Proceeding to Product page from fixture data
+
+Cypress.Commands.add("proceedProductpage", () => {
+    cy.fixture("product.json").then((productData) => {
+        const targetProduct = productData.productName;
+        productList.productCtnr().should("be.visible");
+
+        productList.productName().each(($el, index) => {
+            if ($el.text() == targetProduct) {
+                productList.productName().eq(index).then(($nameElement) => { //get name
+                    const expectedName = $nameElement.text();
+
+                    productList.productDesc().eq(index).then(($descElement) => { //get desc
+                        const expectedDesc = $descElement.text();
+
+                        productList.productPrice().eq(index).then(($priceElement) => { //get price
+                            const expectedPrice = $priceElement.text();
+
+                            productList.productName().eq(index).click(); //click the product that match
+                            product.productCtnr().should("be.visible");
+
+                            product.productName().then(($productPageNameElement) => { //validation name
+                                const actualName = $productPageNameElement.text();
+                                expect(actualName).to.equal(expectedName);
+                            });
+
+                            product.productDesc().then(($productPageDescElement) => { //validation desc
+                                const actualDesc = $productPageDescElement.text();
+                                expect(actualDesc).to.equal(expectedDesc);
+                            });
+
+                            product.productPrice().then(($productPagePriceElement) => { //validation price
+                                const actualPrice = $productPagePriceElement.text();
+                                expect(actualPrice).to.equal(expectedPrice);
+                            });
+                        });
+                    });
+                }); 
+            } 
+        }); 
+    }); 
+
+});
