@@ -4,7 +4,7 @@
     "validPassword": "secret_sauce"
   },
   "invalidUser": {
-    "invalidUsername": "test",
-    "invalidPassword": "test"
+    "invalidUsername": "invalid_user",
+    "invalidPassword": "incorrect_password"
   }
 }
