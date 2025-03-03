@@ -71,7 +71,7 @@ Cypress.Commands.add("validateHamburgerMenu", () =>{
 //Cart Button Validation
 Cypress.Commands.add("validateCartButton", () =>{
     cart.cartBtn().should("be.visible").click();
-    cy.url().should("include", "/cart").go("back");
+    cy.url().should("include", "/cart");
 })
 
 //Footer Validation
@@ -115,7 +115,6 @@ Cypress.Commands.add("selectProduct", (productNameFT) => {
 
 
 //Proceeding to Product page from fixture data
-
 Cypress.Commands.add("proceedProductpage", () => {
     cy.fixture("product.json").then((productData) => {
         const targetProduct = productData.productName;
