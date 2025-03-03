@@ -71,7 +71,7 @@ Cypress.Commands.add("validateHamburgerMenu", () =>{
 //Cart Button Validation
 Cypress.Commands.add("validateCartButton", () =>{
     cart.cartBtn().should("be.visible").click();
-    cy.url().should("include", "/cart").go("back");
+    cy.url().should("include", "/cart");
 })
 
 //Footer Validation

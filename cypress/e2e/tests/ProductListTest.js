@@ -19,7 +19,7 @@ describe("Product List Page Test Suite", ()=>{
 
     it("Validate Product List Page",()=>{
         cy.validateHamburgerMenu();
-        cy.validateCartButton();
+        cy.validateCartButton().go("back");
         cy.validateFooter()
 
         productList.logo().should("be.visible");
