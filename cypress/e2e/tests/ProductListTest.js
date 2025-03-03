@@ -138,11 +138,10 @@ describe("Product List Page Test Suite", ()=>{
         cy.fixture("product.json").as("prod");
         cy.get("@prod").then((product) => {
             product.productNames.forEach((element, index) => {
-                cy.log(`Adding product: <span class="math-inline">\{element\} \(</span>{index + 1})`);
                 cy.selectProduct(element);
                 clickCount++;
             });
-            cart.cartBtn().invoke("text").then((text) => cy.log("Cart count:", text));
+            cart.cartBtn().invoke("text").then((text))
             cart.cartBtn().should("have.text", clickCount.toString());
         });
     });
