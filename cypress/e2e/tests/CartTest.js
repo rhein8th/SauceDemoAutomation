@@ -57,10 +57,11 @@ describe("Cart Page Test Suite", () => {
                 cartPage.productDesc().eq(index).should("have.text", addedProduct.desc);
                 cartPage.productPrice().eq(index).should("have.text", addedProduct.price);
             });
+            cy.validateCartPage();
         });
     });
    
-  //Verify Cart Page from Product page
+  //Validate Cart Page from Product page
     it("Validate Adding Product to Cart from Product page", () => {
         cy.proceedProductpage();
 
@@ -84,12 +85,14 @@ describe("Cart Page Test Suite", () => {
                 cartPage.productName().should("have.text", obj.nameText);
                 cartPage.productDesc().should("have.text", obj.descText);
                 cartPage.productPrice().should("have.text", obj.priceText);
-                cart.cartBtn().should("have.text", "1");
             });
         });
+        cy.validateCartPage();
+        cart.cartBtn().should("have.text", "1");
     });
 
-    //Validate Cart page?????
+    //Validate Continue to Shopping
+    //Validate proceeding to Checkout
 
     
 });
