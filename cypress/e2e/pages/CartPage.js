@@ -12,7 +12,7 @@ class Cart
 
     removeToCartBtn() { return cy.get("button.cart_button"); }
     
-    continueToShopping() { return cy.get ("continue-shopping"); }
+    continueToShopping() { return cy.get ("#continue-shopping"); }
     checkoutBtn() { return cy.get ("#checkout"); }
 
     }
