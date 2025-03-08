@@ -5,6 +5,7 @@ import Footer from "../e2e/sharedComponents/Footer";
 import ProductListPage from "../e2e/pages/ProductListPage";
 import ProductPage from "../e2e/pages/ProductPage";
 import CartPage from "../e2e/pages/CartPage";
+import CheckoutPage from "../e2e/pages/CheckoutPage";
 
 // -- This is a parent command --
 
@@ -15,6 +16,7 @@ const footer = new Footer();
 const productList = new ProductListPage();
 const product = new ProductPage();
 const cartPage = new CartPage();
+const checkoutPage = new CheckoutPage();
 
 //Clearing App Data
 Cypress.Commands.add("clearAppData", () => {
@@ -162,6 +164,9 @@ Cypress.Commands.add("proceedProductpage", () => {
 
 //Validate Cart page
 Cypress.Commands.add("validateCartPage", () => {
+    cy.validateHamburgerMenu();
+    cy.validateCartButton().go("back");
+    cy.validateFooter();
     cartPage.logo().should("be.visible");
     cartPage.pageTitle().should("be.visible");
     cartPage.productCtnr().should("be.visible");
@@ -177,4 +182,25 @@ Cypress.Commands.add("validateCartPageButtons", () => {
     cartPage.checkoutBtn().click();
     cy.url().should("include", "/checkout-step-one");
     
+});
+
+Cypress.Commands.add("validateCheckoutpage", () => {
+    cy.proceedProductpage();
+    product.addToCartBtn().click();
+    cy.validateCartButton();
+    cartPage.checkoutBtn().click();
+    cy.url().should("include", "/checkout-step-one");
+    cy.validateHamburgerMenu();
+    cy.validateCartButton().go("back");
+    cy.validateFooter();
+    
+    checkoutPage.logo().should("be.visible");
+    checkoutPage.pageTitle().should("be.visible");
+    checkoutPage.infoCntr().should("be.visible");
+    checkoutPage.fNameInput().should("be.visible");
+    checkoutPage.lNameInput().should("be.visible");
+    checkoutPage.zipCodeInput().should("be.visible");
+    checkoutPage.cancelBtn().should("be.visible");
+    checkoutPage.continueBtn().should("be.visible");
+
 });
