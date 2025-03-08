@@ -6,5 +6,10 @@
   "invalidUser": {
     "invalidUsername": "invalid_user",
     "invalidPassword": "incorrect_password"
+  },
+  "userInfo": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "zipCode": "1234"
   }
 }

@@ -20,7 +20,7 @@ describe("Product List Page Test Suite", ()=>{
     it("Validate Product List Page",()=>{
         cy.validateHamburgerMenu();
         cy.validateCartButton().go("back");
-        cy.validateFooter()
+        cy.validateFooter();
 
         productList.logo().should("be.visible");
         productList.pageTitle().should("be.visible");
@@ -141,7 +141,6 @@ describe("Product List Page Test Suite", ()=>{
                 cy.selectProduct(element);
                 clickCount++;
             });
-            cart.cartBtn().invoke("text").then((text))
             cart.cartBtn().should("have.text", clickCount.toString());
         });
     });
