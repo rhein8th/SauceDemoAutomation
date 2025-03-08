@@ -65,8 +65,8 @@ describe("Checkout Page Test Suite", () => {
             subtotalPrice += price;
 
         }).then(() => {
-            const subtotal = parseFloat(subtotalPrice.toFixed(2));  // rounded subtotal
-            const totalTax = parseFloat((subtotal * taxRate).toFixed(2));  // rounded tax
+            const subtotal = parseFloat(subtotalPrice.toFixed(2));
+            const totalTax = parseFloat((subtotal * taxRate).toFixed(2)); 
             const totalPrice = parseFloat((subtotal + totalTax).toFixed(2)); 
 
 
