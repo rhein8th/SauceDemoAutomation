@@ -129,11 +129,10 @@ Cypress.Commands.add("proceedProductpage", () => {
                 cy.wrap($el).invoke("text").then((expectedName) => {
                     productList.productDesc().eq(index).should("be.visible").invoke("text").then((expectedDesc) => {
                         productList.productPrice().eq(index).should("be.visible").invoke("text").then((expectedPrice) => {
-                            productList.productName().eq(index).click(); // Click the correct product
+                            productList.productName().eq(index).click(); 
 
                             product.productCtnr().should("be.visible");
 
-                            // Validate Product Details on Product Page
                             product.productName().should("have.text", expectedName.trim());
                             product.productDesc().should("have.text", expectedDesc.trim());
                             product.productPrice().should("have.text", expectedPrice.trim());
@@ -169,22 +168,35 @@ Cypress.Commands.add("validateCartPageButtons", () => {
 });
 
 Cypress.Commands.add("validateCheckoutpage", () => {
-    //cy.proceedProductpage();
-    //product.addToCartBtn().click();
-    //start here
-    let selectedProducts = [];
+    const addedProducts = [];
+
     cy.fixture("product.json").as("prod");
     cy.get("@prod").then((product) => {
-        product.productNames.forEach((element, index) => {
+
+        product.productNames.forEach((element) => {
             cy.selectProduct(element);
-           
+
+            productList.productName().each(($el, index) => {
+                if ($el.text().trim() === element) {
+                    
+                    productList.productName().eq(index).invoke("text").then((name) => {
+                        productList.productDesc().eq(index).invoke("text").then((desc) => {
+                            productList.productPrice().eq(index).invoke("text").then((price) => {
+                               //cy.log(`Captured: ${name}, ${desc}, ${price}`);
+                                addedProducts.push({
+                                    name: name.trim(),
+                                    desc: desc.trim(),
+                                    price: price.trim(),
+                                });
+                            });
+                        });
+                    });
+                }
+            });
         });
-        
     });
-
-
-    cy.wrap(selectedProducts).as("selectedProducts"); // Store for later validation
-    //stoppppppppp
+    cy.wrap(addedProducts).as('addedProducts');
+    
     cy.validateCartButton();
     cartPage.checkoutBtn().click();
     cy.url().should("include", "/checkout-step-one");
@@ -200,6 +212,8 @@ Cypress.Commands.add("validateCheckoutpage", () => {
     checkoutPage.zipCodeInput().should("be.visible");
     checkoutPage.cancelBtn().should("be.visible");
     checkoutPage.continueBtn().should("be.visible");
+
+    
 
 });
 
