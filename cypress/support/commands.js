@@ -185,8 +185,18 @@ Cypress.Commands.add("validateCartPageButtons", () => {
 });
 
 Cypress.Commands.add("validateCheckoutpage", () => {
-    cy.proceedProductpage();
-    product.addToCartBtn().click();
+    //cy.proceedProductpage();
+    //product.addToCartBtn().click();
+    //start here
+    cy.fixture("product.json").as("prod");
+    cy.get("@prod").then((product) => {
+        product.productNames.forEach((element, index) => {
+            cy.selectProduct(element);
+    
+        });
+        
+    });
+    //stoppppppppp
     cy.validateCartButton();
     cartPage.checkoutBtn().click();
     cy.url().should("include", "/checkout-step-one");
