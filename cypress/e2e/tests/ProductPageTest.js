@@ -13,18 +13,14 @@ before(() => {
 
 beforeEach(() => {
     cy.login();
-    // cy.visit("/inventory"); 
+    // cy.visit("/inventory");
+    cy.proceedProductpage(); 
 });
 
 describe("Product Page Test Suite", () => {
 
-    it("Validate Product Page if same details with the clicked product", () => {
-        cy.proceedProductpage();
-    });
-
     //validate product page button
     it("Validate Product Page", () => {
-        cy.proceedProductpage();
         cy.validateHamburgerMenu();
         cy.validateCartButton().go("back");
         cy.validateFooter();
@@ -38,35 +34,25 @@ describe("Product Page Test Suite", () => {
         product.addToCartBtn().should("be.visible");
     });
 
-    //validate back button
     it("Validate Add Product to Cart", () => {
-    cy.proceedProductpage();
-    
         //validate adding to cart & cart button text
         product.addToCartBtn().click();
         cart.cartBtn().should("have.text", "1");
         product.addToCartBtn().should("have.text", "Remove");
     });
 
-    //validate back button
     it("Validate Remove Product to Cart", () => {
-    cy.proceedProductpage();
         //validate removing to cart & cart button text
         product.addToCartBtn().dblclick();
         //product.addToCartBtn().click();
         cart.cartBtn().should("not.have.text");
         product.addToCartBtn().should("have.text", "Add to cart");
-    
     });
 
-        //validate back button
     it("Validate Product Page Back Button", () => {
-        cy.proceedProductpage();
         product.backBtn().click();
         cy.url().should("include","inventory");
-   
     });
 
-  
     
 });
