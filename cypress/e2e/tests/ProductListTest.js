@@ -141,7 +141,6 @@ describe("Product List Page Test Suite", ()=>{
                 cy.selectProduct(element);
                 clickCount++;
             });
-            cart.cartBtn().invoke("text").then((text))
             cart.cartBtn().should("have.text", clickCount.toString());
         });
     });
