@@ -22,9 +22,21 @@ beforeEach(() => {
 describe("Checkout Page Test Suite", () => {
 
     it("Validate Confirm Checkout page", () => {
-        
         cy.fillUpCheckoutPage();
-        confirmPage.totalPrice().should("be.visible");
+
+            // Retrieve addedProducts from the alias
+            cy.get('@addedProducts').then((addedProducts) => {
+                confirmPage.totalPrice().should("be.visible");
+    
+                // Validate product details on the confirmation page
+                addedProducts.forEach((addedProduct, index) => {
+                    confirmPage.productName().eq(index).should('have.text', addedProduct.name);
+                    confirmPage.productDesc().eq(index).should('have.text', addedProduct.desc);
+                    confirmPage.productPrice().eq(index).should('have.text', addedProduct.price);
+                });
+            });
+        
+        //confirmPage.totalPrice().should("be.visible");
     });
 
     

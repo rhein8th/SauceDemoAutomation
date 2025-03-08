@@ -125,40 +125,24 @@ Cypress.Commands.add("proceedProductpage", () => {
         productList.productCtnr().should("be.visible");
 
         productList.productName().each(($el, index) => {
-            if ($el.text() == targetProduct) {
-                productList.productName().eq(index).then(($nameElement) => { //get name
-                    const expectedName = $nameElement.text();
+            if ($el.text().trim() === targetProduct) {
+                cy.wrap($el).invoke("text").then((expectedName) => {
+                    productList.productDesc().eq(index).should("be.visible").invoke("text").then((expectedDesc) => {
+                        productList.productPrice().eq(index).should("be.visible").invoke("text").then((expectedPrice) => {
+                            productList.productName().eq(index).click(); // Click the correct product
 
-                    productList.productDesc().eq(index).then(($descElement) => { //get desc
-                        const expectedDesc = $descElement.text();
-
-                        productList.productPrice().eq(index).then(($priceElement) => { //get price
-                            const expectedPrice = $priceElement.text();
-
-                            productList.productName().eq(index).click(); //click the product that match
                             product.productCtnr().should("be.visible");
 
-                            product.productName().then(($productPageNameElement) => { //validation name
-                                const actualName = $productPageNameElement.text();
-                                expect(actualName).to.equal(expectedName);
-                            });
-
-                            product.productDesc().then(($productPageDescElement) => { //validation desc
-                                const actualDesc = $productPageDescElement.text();
-                                expect(actualDesc).to.equal(expectedDesc);
-                            });
-
-                            product.productPrice().then(($productPagePriceElement) => { //validation price
-                                const actualPrice = $productPagePriceElement.text();
-                                expect(actualPrice).to.equal(expectedPrice);
-                            });
+                            // Validate Product Details on Product Page
+                            product.productName().should("have.text", expectedName.trim());
+                            product.productDesc().should("have.text", expectedDesc.trim());
+                            product.productPrice().should("have.text", expectedPrice.trim());
                         });
                     });
-                }); 
-            } 
-        }); 
-    }); 
-
+                });
+            }
+        });
+    });
 });
 
 
@@ -188,14 +172,18 @@ Cypress.Commands.add("validateCheckoutpage", () => {
     //cy.proceedProductpage();
     //product.addToCartBtn().click();
     //start here
+    let selectedProducts = [];
     cy.fixture("product.json").as("prod");
     cy.get("@prod").then((product) => {
         product.productNames.forEach((element, index) => {
             cy.selectProduct(element);
-    
+           
         });
         
     });
+
+
+    cy.wrap(selectedProducts).as("selectedProducts"); // Store for later validation
     //stoppppppppp
     cy.validateCartButton();
     cartPage.checkoutBtn().click();
