@@ -167,6 +167,14 @@ Cypress.Commands.add("validateCartPage", () => {
     cartPage.productCtnr().should("be.visible");
     cartPage.removeToCartBtn().should("be.visible");
     cartPage.continueToShopping().should("be.visible");
-    cartPage.checkoutBtn().should("be.visible");
+    cartPage.checkoutBtn().should("be.visible");   
+});
+
+Cypress.Commands.add("validateCartPageButtons", () => {
+
+    cartPage.continueToShopping().click();
+    cy.url().should("include", "/inventory").go("back");
+    cartPage.checkoutBtn().click();
+    cy.url().should("include", "/checkout-step-one");
     
 });

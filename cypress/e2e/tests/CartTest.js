@@ -58,6 +58,7 @@ describe("Cart Page Test Suite", () => {
                 cartPage.productPrice().eq(index).should("have.text", addedProduct.price);
             });
             cy.validateCartPage();
+            cy.validateCartPageButtons();
         });
     });
    
@@ -89,6 +90,7 @@ describe("Cart Page Test Suite", () => {
         });
         cy.validateCartPage();
         cart.cartBtn().should("have.text", "1");
+        cy.validateCartPageButtons();
     });
 
     //Validate Continue to Shopping
