@@ -12,14 +12,14 @@ before(()=>{
 
 beforeEach(() => {
     cy.login();
-    // cy.visit("/inventory"); 
+  
 });
 
 describe("Product List Page Test Suite", ()=>{
 
     it("Validate Product List Page",()=>{
         cy.validateHamburgerMenu();
-        cy.validateCartButton();
+        cy.validateCartButton().go("back");
         cy.validateFooter()
 
         productList.logo().should("be.visible");
@@ -134,14 +134,18 @@ describe("Product List Page Test Suite", ()=>{
 
     //validate adding product to cart
     it("Validate Adding Product to Cart", () => {
- 
-    cy.fixture("product.json").as("prod");
+        let clickCount = 0;
+        cy.fixture("product.json").as("prod");
         cy.get("@prod").then((product) => {
-            product.productNames.forEach(function(element){
-            cy.selectProduct(element)
-          });
-        })
+            product.productNames.forEach((element, index) => {
+                cy.selectProduct(element);
+                clickCount++;
+            });
+            cart.cartBtn().invoke("text").then((text))
+            cart.cartBtn().should("have.text", clickCount.toString());
+        });
     });
+    
 
     //validate removing product to cart
     it("Validate Removing Products from Cart", () => {
