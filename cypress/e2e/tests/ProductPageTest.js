@@ -26,7 +26,7 @@ describe("Product Page Test Suite", () => {
     it("Validate Product Page", () => {
         cy.proceedProductpage();
         cy.validateHamburgerMenu();
-        cy.validateCartButton();
+        cy.validateCartButton().go("back");
         cy.validateFooter();
         product.logo().should("be.visible");
         product.backBtn().should("be.visible");
