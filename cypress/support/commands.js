@@ -4,6 +4,7 @@ import CartNavigation from "../e2e/sharedComponents/CartNavigation";
 import Footer from "../e2e/sharedComponents/Footer";
 import ProductListPage from "../e2e/pages/ProductListPage";
 import ProductPage from "../e2e/pages/ProductPage";
+import CartPage from "../e2e/pages/CartPage";
 
 // -- This is a parent command --
 
@@ -12,7 +13,8 @@ const hamburger = new HamburgerMenu();
 const cart = new CartNavigation();
 const footer = new Footer();
 const productList = new ProductListPage();
-const product = new ProductPage(); 
+const product = new ProductPage();
+const cartPage = new CartPage();
 
 //Clearing App Data
 Cypress.Commands.add("clearAppData", () => {
@@ -71,7 +73,7 @@ Cypress.Commands.add("validateHamburgerMenu", () =>{
 //Cart Button Validation
 Cypress.Commands.add("validateCartButton", () =>{
     cart.cartBtn().should("be.visible").click();
-    cy.url().should("include", "/cart").go("back");
+    cy.url().should("include", "/cart");
 })
 
 //Footer Validation
@@ -115,7 +117,6 @@ Cypress.Commands.add("selectProduct", (productNameFT) => {
 
 
 //Proceeding to Product page from fixture data
-
 Cypress.Commands.add("proceedProductpage", () => {
     cy.fixture("product.json").then((productData) => {
         const targetProduct = productData.productName;
@@ -156,4 +157,24 @@ Cypress.Commands.add("proceedProductpage", () => {
         }); 
     }); 
 
+});
+
+
+//Validate Cart page
+Cypress.Commands.add("validateCartPage", () => {
+    cartPage.logo().should("be.visible");
+    cartPage.pageTitle().should("be.visible");
+    cartPage.productCtnr().should("be.visible");
+    cartPage.removeToCartBtn().should("be.visible");
+    cartPage.continueToShopping().should("be.visible");
+    cartPage.checkoutBtn().should("be.visible");   
+});
+
+Cypress.Commands.add("validateCartPageButtons", () => {
+
+    cartPage.continueToShopping().click();
+    cy.url().should("include", "/inventory").go("back");
+    cartPage.checkoutBtn().click();
+    cy.url().should("include", "/checkout-step-one");
+    
 });

@@ -19,7 +19,7 @@ describe("Product List Page Test Suite", ()=>{
 
     it("Validate Product List Page",()=>{
         cy.validateHamburgerMenu();
-        cy.validateCartButton();
+        cy.validateCartButton().go("back");
         cy.validateFooter()
 
         productList.logo().should("be.visible");
@@ -133,17 +133,15 @@ describe("Product List Page Test Suite", ()=>{
     });
 
     //validate adding product to cart
-
-    it.only("Validate Adding Product to Cart", () => {
-        let clickCount = 0; // Declare clickCount here (less common)
+    it("Validate Adding Product to Cart", () => {
+        let clickCount = 0;
         cy.fixture("product.json").as("prod");
         cy.get("@prod").then((product) => {
             product.productNames.forEach((element, index) => {
-                cy.log(`Adding product: <span class="math-inline">\{element\} \(</span>{index + 1})`);
                 cy.selectProduct(element);
                 clickCount++;
             });
-            cart.cartBtn().invoke("text").then((text) => cy.log("Cart count:", text));
+            cart.cartBtn().invoke("text").then((text))
             cart.cartBtn().should("have.text", clickCount.toString());
         });
     });
