@@ -21,6 +21,21 @@ describe("Checkout Page Test Suite", () => {
 
     it("Validate Checkout page", () => {
         cy.validateCheckoutpage();
+        cy.validateCartButton();
+        cartPage.checkoutBtn().click();
+        cy.url().should("include", "/checkout-step-one");
+        cy.validateHamburgerMenu();
+        cy.validateCartButton().go("back");
+        cy.validateFooter();
+        
+        checkoutPage.logo().should("be.visible");
+        checkoutPage.pageTitle().should("be.visible");
+        checkoutPage.infoCntr().should("be.visible");
+        checkoutPage.fNameInput().should("be.visible");
+        checkoutPage.lNameInput().should("be.visible");
+        checkoutPage.zipCodeInput().should("be.visible");
+        checkoutPage.cancelBtn().should("be.visible");
+        checkoutPage.continueBtn().should("be.visible");
     });
 
     it("Validate Text Fields", () => {
@@ -48,21 +63,9 @@ describe("Checkout Page Test Suite", () => {
 
 
 
-     it.only("Validate Proceeding to Confirm Checkout page", () => {
-        cy.fixture("users").then((users) => {
-            const fName = users.userInfo.firstName;
-            const lName = users.userInfo.lastName;
-            const zCode = users.userInfo.zipCode;
-  
-            cy.validateCheckoutpage();
-
-            checkoutPage.fNameInput().type(fName);
-            checkoutPage.lNameInput().type(lName);
-            checkoutPage.zipCodeInput().type(zCode);
-
-            checkoutPage.continueBtn().click();
-            cy.url().should("include","/checkout-step-two");
-        });
+     it("Validate Proceeding to Confirm Checkout page", () => {
+        cy.fillUpCheckoutPage();
      })
+
     
 });
