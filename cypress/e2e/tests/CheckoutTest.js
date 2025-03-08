@@ -48,21 +48,8 @@ describe("Checkout Page Test Suite", () => {
 
 
 
-     it.only("Validate Proceeding to Confirm Checkout page", () => {
-        cy.fixture("users").then((users) => {
-            const fName = users.userInfo.firstName;
-            const lName = users.userInfo.lastName;
-            const zCode = users.userInfo.zipCode;
-  
-            cy.validateCheckoutpage();
-
-            checkoutPage.fNameInput().type(fName);
-            checkoutPage.lNameInput().type(lName);
-            checkoutPage.zipCodeInput().type(zCode);
-
-            checkoutPage.continueBtn().click();
-            cy.url().should("include","/checkout-step-two");
-        });
+     it("Validate Proceeding to Confirm Checkout page", () => {
+        cy.fillUpCheckoutPage();
      })
     
 });
