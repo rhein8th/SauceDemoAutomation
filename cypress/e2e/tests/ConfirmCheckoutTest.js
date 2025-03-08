@@ -21,8 +21,8 @@ beforeEach(() => {
 
 describe("Checkout Page Test Suite", () => {
 
-    it("Validate Checkout page", () => {
-        //cy.validateCheckoutpage();
+    it("Validate Confirm Checkout page", () => {
+        
         cy.fillUpCheckoutPage();
         confirmPage.totalPrice().should("be.visible");
     });

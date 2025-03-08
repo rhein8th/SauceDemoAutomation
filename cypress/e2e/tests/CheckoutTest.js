@@ -51,5 +51,6 @@ describe("Checkout Page Test Suite", () => {
      it("Validate Proceeding to Confirm Checkout page", () => {
         cy.fillUpCheckoutPage();
      })
+
     
 });
