@@ -19,7 +19,6 @@ beforeEach(() => {
 
 describe("Checkout Page Test Suite", () => {
 
-    //@regression
     it("Validate Checkout page", () => {
         cy.validateCheckoutpage();
         cy.validateCartButton();
@@ -39,7 +38,6 @@ describe("Checkout Page Test Suite", () => {
         checkoutPage.continueBtn().should("be.visible");
     });
 
-    //@regression
     it("Validate Text Fields", () => {
         cy.fixture("users").then((users) => {
             const fName = users.userInfo.firstName;
@@ -63,8 +61,6 @@ describe("Checkout Page Test Suite", () => {
         });
      })
 
-
-     //@regression @smoke
      it("Validate Proceeding to Confirm Checkout page", () => {
         cy.fillUpCheckoutPage();
      })

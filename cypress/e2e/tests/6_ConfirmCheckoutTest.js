@@ -21,7 +21,6 @@ beforeEach(() => {
 
 describe("Checkout Page Test Suite", () => {
 
-    //@regression @smoke
     it("Validate Confirm Checkout page", () => {
         cy.fillUpCheckoutPage();
       
@@ -52,7 +51,6 @@ describe("Checkout Page Test Suite", () => {
         
     });
 
-    //@regression @smoke
     it("Validate Sub Total, Tax, and Total Price", () => {
         cy.fillUpCheckoutPage();
         confirmPage.subTotal().should("be.visible");
@@ -91,7 +89,6 @@ describe("Checkout Page Test Suite", () => {
 
     });
 
-    //@regression
     it("Validate Back and Finish buttons", () => {
         cy.fillUpCheckoutPage();
         confirmPage.cancelBtn().click();
@@ -103,7 +100,7 @@ describe("Checkout Page Test Suite", () => {
 
     });
     
-    
+
 
     
 });

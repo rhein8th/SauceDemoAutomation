@@ -13,14 +13,12 @@ before(() => {
 
 beforeEach(() => {
     cy.login();
-    // cy.visit("/inventory");
+    
     cy.proceedProductpage(); 
 });
 
 describe("Product Page Test Suite", () => {
 
-    //@regression
-    //validate product page button
     it("Validate Product Page", () => {
         cy.validateHamburgerMenu();
         cy.validateCartButton().go("back");
@@ -35,24 +33,20 @@ describe("Product Page Test Suite", () => {
         product.addToCartBtn().should("be.visible");
     });
 
-    //@regression @smoke
     it("Validate Add Product to Cart", () => {
-        //validate adding to cart & cart button text
+        
         product.addToCartBtn().click();
         cart.cartBtn().should("have.text", "1");
         product.addToCartBtn().should("have.text", "Remove");
     });
 
-    //@regression
+
     it("Validate Remove Product to Cart", () => {
-        //validate removing to cart & cart button text
         product.addToCartBtn().dblclick();
-        //product.addToCartBtn().click();
         cart.cartBtn().should("not.have.text");
         product.addToCartBtn().should("have.text", "Add to cart");
     });
 
-    //@regression
     it("Validate Product Page Back Button", () => {
         product.backBtn().click();
         cy.url().should("include","inventory");

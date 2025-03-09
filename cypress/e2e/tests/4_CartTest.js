@@ -19,18 +19,16 @@ beforeEach(() => {
 
 describe("Cart Page Test Suite", () => {
 
-    //@regression @smoke
     it("Validate Adding Products to Cart from Product List page", () => {
         let clickCount = 0;
-        const addedProducts = []; //Array to store added product details
+        const addedProducts = [];
     
         cy.fixture("product.json").as("prod");
         cy.get("@prod").then((product) => {
             product.productNames.forEach((element) => {
                 cy.selectProduct(element);
                 clickCount++;
-    
-                //Store product details
+
                 productList.productName().each(($el, index) => {
                     productList.productDesc().eq(index).invoke("text").then((descText) => {
                         productList.productPrice().eq(index).invoke("text").then((priceText) => {
@@ -45,13 +43,8 @@ describe("Cart Page Test Suite", () => {
             });
     
             cart.cartBtn().should("have.text", clickCount.toString());
-    
-           
-            cy.validateCartButton();    //Navigate to cart
-            
-            //Validate cart details
-            cartPage.productCtnr().should("have.length", clickCount); //Verify correct number of items in cart 
-
+            cy.validateCartButton();
+            cartPage.productCtnr().should("have.length", clickCount); 
     
             addedProducts.forEach((addedProduct, index) => {
                 cartPage.productName().eq(index).should("have.text", addedProduct.name);
@@ -62,9 +55,7 @@ describe("Cart Page Test Suite", () => {
             cy.validateCartPageButtons();
         });
     });
-   
-    //@regression @smoke
-  //Validate Cart Page from Product page
+ 
     it("Validate Adding Product to Cart from Product page", () => {
         cy.proceedProductpage();
 
@@ -94,9 +85,5 @@ describe("Cart Page Test Suite", () => {
         cart.cartBtn().should("have.text", "1");
         cy.validateCartPageButtons();
     });
-
-    //Validate Continue to Shopping
-    //Validate proceeding to Checkout
-
     
 });
