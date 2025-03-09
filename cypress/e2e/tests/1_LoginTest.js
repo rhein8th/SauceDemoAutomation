@@ -13,15 +13,15 @@ before(()=>{
  })
 
 describe("Login Page Test Suite", ()=>{
-
-    it("Validate Login page",()=>{
+   
+    it("Validate Login page", ()=>{
         logIn.logo().should("be.visible");
         logIn.usernameInput().should("be.visible");
         logIn.passwordInput().should("be.visible");
         logIn.loginBtn().should("be.visible");
     });
-
-    it("Validate Invalid Credentials",()=>{
+    
+    it("Validate Invalid Credentials", ()=>{
         cy.fixture("users").then((users) => {
             const username = users.invalidUser.invalidUsername;
             const password = users.invalidUser.invalidPassword;
@@ -35,8 +35,8 @@ describe("Login Page Test Suite", ()=>{
                 cy.url().should("not.include", "/inventory");
         });
     });
-
-    it("Validate Successful Login",()=>{
+   
+    it("Validate Successful Login", ()=>{
             cy.login();
     });
 

@@ -19,6 +19,7 @@ beforeEach(() => {
 
 describe("Product Page Test Suite", () => {
 
+    //@regression
     //validate product page button
     it("Validate Product Page", () => {
         cy.validateHamburgerMenu();
@@ -34,6 +35,7 @@ describe("Product Page Test Suite", () => {
         product.addToCartBtn().should("be.visible");
     });
 
+    //@regression @smoke
     it("Validate Add Product to Cart", () => {
         //validate adding to cart & cart button text
         product.addToCartBtn().click();
@@ -41,6 +43,7 @@ describe("Product Page Test Suite", () => {
         product.addToCartBtn().should("have.text", "Remove");
     });
 
+    //@regression
     it("Validate Remove Product to Cart", () => {
         //validate removing to cart & cart button text
         product.addToCartBtn().dblclick();
@@ -49,6 +52,7 @@ describe("Product Page Test Suite", () => {
         product.addToCartBtn().should("have.text", "Add to cart");
     });
 
+    //@regression
     it("Validate Product Page Back Button", () => {
         product.backBtn().click();
         cy.url().should("include","inventory");

@@ -19,6 +19,7 @@ beforeEach(() => {
 
 describe("Cart Page Test Suite", () => {
 
+    //@regression @smoke
     it("Validate Adding Products to Cart from Product List page", () => {
         let clickCount = 0;
         const addedProducts = []; //Array to store added product details
@@ -62,6 +63,7 @@ describe("Cart Page Test Suite", () => {
         });
     });
    
+    //@regression @smoke
   //Validate Cart Page from Product page
     it("Validate Adding Product to Cart from Product page", () => {
         cy.proceedProductpage();

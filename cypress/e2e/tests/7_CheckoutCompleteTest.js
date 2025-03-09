@@ -23,6 +23,7 @@ beforeEach(() => {
 
 describe("Checkout Complete Page Test Suite", () => {
 
+    //@regression @smoke
     it("Validate Checkout Complete Page", () => {
         cy.fillUpCheckoutPage();
         confirmPage.finishBtn().click();
