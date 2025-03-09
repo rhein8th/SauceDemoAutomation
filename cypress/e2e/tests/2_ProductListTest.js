@@ -17,6 +17,7 @@ beforeEach(() => {
 
 describe("Product List Page Test Suite", ()=>{
 
+    //@regression
     it("Validate Product List Page",()=>{
         cy.validateHamburgerMenu();
         cy.validateCartButton().go("back");
@@ -33,8 +34,9 @@ describe("Product List Page Test Suite", ()=>{
         productList.productPrice().should("be.visible");
         productList.addToCartBtn().should("be.visible");
     })
-    //validate sort functionality by name asc & desc and  by price asc & desc
 
+    //@regression
+    //validate sort functionality by name asc & desc and  by price asc & desc
     it("Validate Sorting by Name (A to Z)", () => { // name asc
         //Storing the product names in array before sorting
         let originalNames = [];
@@ -59,6 +61,7 @@ describe("Product List Page Test Suite", ()=>{
         });
     });
     
+    //@regression
     it("Validate Sorting by Name (Z to A)", () => { // name desc
         //Storing the product names in array before sorting
         let originalNames = [];
@@ -82,6 +85,7 @@ describe("Product List Page Test Suite", ()=>{
         });
     });
 
+    //@regression
     it("Validate Sorting by Price (Low to High)", () => { // price asc
         //Storing the prices in array before sorting
         productList.productPrice().then(($elements) => {
@@ -106,7 +110,7 @@ describe("Product List Page Test Suite", ()=>{
         });
  
     });
-
+    //@regression
     it("Validate Sorting by Price (High to Low)", () => { // price desc
         //Storing the prices in array before sorting
         productList.productPrice().then(($elements) => {
@@ -131,7 +135,7 @@ describe("Product List Page Test Suite", ()=>{
         });
  
     });
-
+    //@regression @smoke
     //validate adding product to cart
     it("Validate Adding Product to Cart", () => {
         let clickCount = 0;
@@ -145,7 +149,7 @@ describe("Product List Page Test Suite", ()=>{
         });
     });
     
-
+    //@regression
     //validate removing product to cart
     it("Validate Removing Products from Cart", () => {
         //randomly select and click "Add to cart" buttons
