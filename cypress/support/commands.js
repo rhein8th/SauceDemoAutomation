@@ -47,17 +47,13 @@ Cypress.Commands.add("validateHamburgerMenu", () =>{
 
     cy.fixture("menu.json").as("navs");
     
-        //Verifying Navigation Sidebar if visible
     hamburger.hamburgerMenu().click();
     hamburger.sideMenu().should("be.visible");
 
-    //Verifying Hamburger Menu Text if equal to the Menu Data in fixtures
         cy.get("@navs").then((menu) => {
         const menuItems = menu.menuItems;
             
-            //Iterate through the menu items
             menuItems.forEach((item, index) => {
-                // Validate main menu item text
                 hamburger.menuList().eq(index)
                 .invoke("text")
                 .then((text) => {
@@ -89,7 +85,6 @@ Cypress.Commands.add("validateFooter", () => {
     cy.get("@footer").then((footerData) => {
         const socialMediaLinks = footerData.socialMediaLinks; 
 
-        // Validate if URLs are equal to footer fixture
         footer.socialMedias().each(($link, index) => {
             cy.wrap($link)
                 .invoke("attr", "href") 
@@ -98,7 +93,7 @@ Cypress.Commands.add("validateFooter", () => {
                 });
         });
 
-        footer.copyrightNotice() // Validate copyright text
+        footer.copyrightNotice()
             .invoke("text")
             .then((text) => {
                 expect(text.trim()).to.equal(footerData.copyright.notice);
@@ -117,8 +112,7 @@ Cypress.Commands.add("selectProduct", (productNameFT) => {
     });
 });
 
-
-//Proceeding to Product page from fixture data
+//Proceeding to Product page
 Cypress.Commands.add("proceedProductpage", () => {
     cy.fixture("product.json").then((productData) => {
         const targetProduct = productData.productName;

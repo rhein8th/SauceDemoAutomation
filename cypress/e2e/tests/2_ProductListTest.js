@@ -17,7 +17,7 @@ beforeEach(() => {
 
 describe("Product List Page Test Suite", ()=>{
 
-    //@regression
+    
     it("Validate Product List Page",()=>{
         cy.validateHamburgerMenu();
         cy.validateCartButton().go("back");
@@ -35,108 +35,104 @@ describe("Product List Page Test Suite", ()=>{
         productList.addToCartBtn().should("be.visible");
     })
 
-    //@regression
+    
     //validate sort functionality by name asc & desc and  by price asc & desc
     it("Validate Sorting by Name (A to Z)", () => { // name asc
-        //Storing the product names in array before sorting
+       
         let originalNames = [];
         productList.productName().then(($elements) => {
             originalNames = $elements.toArray().map(el => el.innerText.trim());
             console.log(originalNames);
 
         });
-        //sort via button
+       
         productList.sortBtn().select("Name (A to Z)");
         productList.sortBtn().should("have.value", "az");
-        //Get product names after sort via button
+       
         let sortedNames = [];
         productList.productName().then(($elements) => {
             sortedNames = $elements.toArray().map(el => el.innerText.trim());
             console.log(sortedNames);
-            //sorting stored originalNames for comparison
+           
             const expectedNames = [...originalNames].sort();
             console.log(expectedNames);
-            //Assertion
+          
             expect(sortedNames).to.deep.equal(expectedNames);
         });
     });
     
-    //@regression
+   
     it("Validate Sorting by Name (Z to A)", () => { // name desc
-        //Storing the product names in array before sorting
+        
         let originalNames = [];
         productList.productName().then(($elements) => {
             originalNames = $elements.toArray().map(el => el.innerText.trim());
             console.log(originalNames);
         });
-        //sort via button
+       
         productList.sortBtn().select("Name (Z to A)");
         productList.sortBtn().should("have.value", "za");
-        //Get product names after sort via button
+       
         let sortedNames = [];
         productList.productName().then(($elements) => {
             sortedNames = $elements.toArray().map(el => el.innerText.trim());
             console.log(sortedNames);
-            //sorting in reverse stored originalNames for comparison
+            
             const expectedNames = [...originalNames].sort().reverse();
             console.log(expectedNames);
-            //Assertion
+            
             expect(sortedNames).to.deep.equal(expectedNames);
         });
     });
 
-    //@regression
-    it("Validate Sorting by Price (Low to High)", () => { // price asc
-        //Storing the prices in array before sorting
+    
+    it("Validate Sorting by Price (Low to High)", () => { 
+      
         productList.productPrice().then(($elements) => {
             const originalPrices = $elements.toArray().map(el => parseFloat(el.innerText.replace("$", "").trim()));
             console.log(originalPrices);
 
-            //sort via button
+           
             productList.sortBtn().select("Price (low to high)");
             productList.sortBtn().should("have.value", "lohi");
-            //Get prices after sort via button
+          
             productList.productPrice().then(($elements) => {
                 const sortedPrices = $elements.toArray().map(el => parseFloat(el.innerText.replace("$", "").trim()));
                 console.log(sortedPrices);
-                //sorting in reverse stored originalPrices for comparison
+             
                 const expectedPrices = [...originalPrices].sort((a, b) => a - b);
                 console.log(expectedPrices);
             
-                //Assertion
                 expect(sortedPrices).to.deep.equal(expectedPrices);
             
             });
         });
  
     });
-    //@regression
-    it("Validate Sorting by Price (High to Low)", () => { // price desc
-        //Storing the prices in array before sorting
+    
+    it("Validate Sorting by Price (High to Low)", () => { 
+    
         productList.productPrice().then(($elements) => {
             const originalPrices = $elements.toArray().map(el => parseFloat(el.innerText.replace("$", "").trim()));
             console.log(originalPrices);
 
-            //sort via button
             productList.sortBtn().select("Price (high to low)");
             productList.sortBtn().should("have.value", "hilo");
-            //Get prices after sort via button
+          
             productList.productPrice().then(($elements) => {
                 const sortedPrices = $elements.toArray().map(el => parseFloat(el.innerText.replace("$", "").trim()));
                 console.log(sortedPrices);
-                //sorting in reverse stored originalPrices for comparison
+             
                 const expectedPrices = [...originalPrices].sort((a, b) => b - a);
                 console.log(expectedPrices);
             
-                //Assertion
                 expect(sortedPrices).to.deep.equal(expectedPrices);
             
             });
         });
  
     });
-    //@regression @smoke
-    //validate adding product to cart
+    
     it("Validate Adding Product to Cart", () => {
         let clickCount = 0;
         cy.fixture("product.json").as("prod");
@@ -149,10 +145,10 @@ describe("Product List Page Test Suite", ()=>{
         });
     });
     
-    //@regression
-    //validate removing product to cart
+    
+   
     it("Validate Removing Products from Cart", () => {
-        //randomly select and click "Add to cart" buttons
+       
         productList.addToCartBtn()
             .filter((index, btn) => btn.innerText.trim() === "Add to cart")
             .then(($addBtns) => {
@@ -165,7 +161,7 @@ describe("Product List Page Test Suite", ()=>{
                         cy.wrap($btn).click();
                     }
                 });
-                return cy.wrap(randomCount); //store selected count
+                return cy.wrap(randomCount);
             })
 
             .then((randomCount) => { //get stored selected count
@@ -174,14 +170,13 @@ describe("Product List Page Test Suite", ()=>{
                     .then(($removeBtns) => {
                         let initialCount = $removeBtns.length; //Number of products in the cart
     
-                        //validate cart count matches initial count
                         cart.cartBtn().should("have.text", initialCount.toString());
     
                         if (initialCount > 0) {
                             cy.wrap($removeBtns).each(($btn, index) => {
                                 cy.wrap($btn).click();
-                                initialCount--; //decrement count after each click
-                                cart.cartBtn().should("have.text", initialCount > 0 ? initialCount.toString() : ""); //validate cart count after removal
+                                initialCount--;
+                                cart.cartBtn().should("have.text", initialCount > 0 ? initialCount.toString() : ""); 
                             });
                         }
                     });
