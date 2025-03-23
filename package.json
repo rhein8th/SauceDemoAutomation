@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run",
-    "chrome": "npx cypress run--browser chrome",
+    "chrome": "npx cypress run --browser chrome",
     "edge": "npx cypress run --browser edge",
     "firefox": "npx cypress run --browser firefox"
   },
