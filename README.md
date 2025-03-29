@@ -80,7 +80,7 @@ npx cypress run
 
 Cypress Documentation
 
-Udemy - [Cypress -Modern Automation Testing from Scratch + Frameworks]([url](https://www.udemy.com/course/cypress-tutorial/))
+Udemy - (https://www.udemy.com/course/cypress-tutorial/)
 
-SauceDemo Website ([https://www.saucedemo.com/]([url](https://www.saucedemo.com/)))
+SauceDemo Website (https://www.saucedemo.com/)
 
