@@ -72,7 +72,7 @@ Open Cypress UI:
 
 npx cypress open
 
-Run in Headless Mode:
+Run in Headed Mode:
 
 npx cypress run
 
