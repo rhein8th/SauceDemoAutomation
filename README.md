@@ -1,13 +1,13 @@
 # SauceDemoAutomation
-SauceDemoAutomation – Cypress Test Framework
+**SauceDemoAutomation – Cypress Test Framework**
 
-📌 Overview
+📌 **Overview**
 
 This is a Cypress automation test framework for SauceDemo, an e-commerce web application designed for UI and functional testing.
 
 The framework follows the Page Object Model (POM) for better test structure and maintainability.
 
-🛠️ Tech Stack
+🛠️ **Tech Stack**
 
 Test Framework: Cypress
 
@@ -17,7 +17,7 @@ Test Runner: Mocha (built into Cypress)
 
 Version Control: Git
 
-🎯 Features & Test Scenarios
+🎯 **Features & Test Scenarios**
 
 ✔ Login Tests → Valid & invalid login attempts
 
@@ -30,7 +30,7 @@ Version Control: Git
 ✔ UI Tests → Verify buttons and responsiveness
 
 
-🏗️ Project Structure (POM-Based)
+🏗️ **Project Structure (POM-Based)**
 📂 cypress/
 
  ┣ 📂 e2e/                  # Test-related files
@@ -54,7 +54,7 @@ Version Control: Git
 📄 cypress.config.js        # Cypress configuration file  
 📄 package.json             # Dependencies & scripts  
 
-🚀 Installation & Setup
+🚀 **Installation & Setup**
 
 1️⃣ Clone the Repository:
 
@@ -76,7 +76,7 @@ Run in Headed Mode:
 
 npx cypress run
 
-🔗 Resources
+🔗 **Resources**
 
 Cypress Documentation
 
