@@ -20,15 +20,25 @@ Version Control: Git
 
 🏗️ Project Structure (POM-Based)
 📂 cypress/
+
  ┣ 📂 e2e/                  # Test-related files
+ 
  ┃ ┣ 📂 pages/              # Page Object Model (POM) classes
+ 
  ┃ ┣ 📂 sharedComponents/   # Shared Components classes
+ 
  ┃ ┗ 📂 tests/              # Test cases organized by feature
+ 
  ┣ 📂 fixtures/             # Test data (e.g., user credentials)
+ 
  ┣ 📂 support/
+ 
  ┃ ┣ 📂 commands.js         # Custom Cypress commands
+ 
  ┃ ┗ 📂 index.js            # Global configurations
+ 
  ┣ 📂 plugins/              # Cypress plugins  
+ 
 📄 cypress.config.js        # Cypress configuration file  
 📄 package.json             # Dependencies & scripts  
 
