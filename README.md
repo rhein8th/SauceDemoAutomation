@@ -15,6 +15,7 @@ Test Runner: Mocha (built into Cypress)
 Version Control: Git
 
 🎯 Features & Test Scenarios
+
 ✔ Login Tests → Valid & invalid login attempts
 
 ✔ Product Tests → Add/remove items, sort products
@@ -23,7 +24,7 @@ Version Control: Git
 
 ✔ Checkout Tests → Complete purchase flow
 
-✔ UI Tests → Verify buttons, images, and responsiveness
+✔ UI Tests → Verify buttons and responsiveness
 
 🏗️ Project Structure (POM-Based)
 📂 cypress/
