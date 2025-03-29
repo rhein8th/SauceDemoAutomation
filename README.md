@@ -13,9 +13,13 @@ Version Control: Git
 
 🎯 Features & Test Scenarios
 ✔ Login Tests → Valid & invalid login attempts
+
 ✔ Product Tests → Add/remove items, sort products
+
 ✔ Cart Tests → Verify items in the cart
+
 ✔ Checkout Tests → Complete purchase flow
+
 ✔ UI Tests → Verify buttons, images, and responsiveness
 
 🏗️ Project Structure (POM-Based)
