@@ -9,7 +9,17 @@ module.exports = defineConfig({
   },
 
   reporter: "cypress-mochawesome-reporter",
+  reporterOptions: {
+    reportDir: "cypress/reports",
+    overwrite: false,
+    html: true,
+    json: true,
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveJson: false,
+  },
   video: true,
+  videosFolder: "cypress/reports/videos",
   screenshotOnRunFailure: true,
 
   e2e: {

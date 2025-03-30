@@ -1,23 +1,23 @@
 # SauceDemoAutomation
 **SauceDemoAutomation – Cypress Test Framework**
 
-📌 **Overview**
+## 📌 Overview
 
-This is a Cypress automation test framework for SauceDemo, an e-commerce web application designed for UI and functional testing.
+SauceDemoAutomation is a Cypress-based test framework designed for UI and functional testing of the SauceDemo e-commerce web application.
 
-The framework follows the Page Object Model (POM) for better test structure and maintainability.
+This framework follows the Page Object Model (POM) for better test structure and maintainability.
 
-🛠️ **Tech Stack**
+## 🛠️ Tech Stack
 
-Test Framework: Cypress
+ * Test Framework: Cypress
 
-Assertion Library: Chai (built into Cypress)
+ * Assertion Library: Chai (built into Cypress)
 
-Test Runner: Mocha (built into Cypress)
+ * Test Runner: Mocha (built into Cypress)
 
-Version Control: Git
+ * Version Control: Git
 
-🎯 **Features & Test Scenarios**
+## 🎯 Features & Test Scenarios
 
 ✔ Login Tests → Valid & invalid login attempts
 
@@ -30,57 +30,69 @@ Version Control: Git
 ✔ UI Tests → Verify buttons and responsiveness
 
 
-🏗️ **Project Structure (POM-Based)**
+## 🏗️ Project Structure (POM-Based)
+
 📂 cypress/
 
- ┣ 📂 e2e/                  # Test-related files
- 
- ┃ ┣ 📂 pages/              # Page Object Model (POM) classes
- 
- ┃ ┣ 📂 sharedComponents/   # Shared Components classes
- 
- ┃ ┗ 📂 tests/              # Test cases organized by feature
- 
- ┣ 📂 fixtures/             # Test data (e.g., user credentials)
- 
+ ┃ ┣ 📂 e2e/                 # Test-related files
+
+ ┃ ┣ 📂 pages/               # Page Object Model (POM) classes
+
+ ┃ ┣ 📂 sharedComponents/    # Shared Components classes
+
+ ┃ ┗ 📂 tests/               # Test cases organized by feature
+
+ ┣ 📂 fixtures/              # Test data
+
+ ┣ 📂 reports/               # Test reports (mochawesome)
+
  ┣ 📂 support/
- 
- ┃ ┣ 📂 commands.js         # Custom Cypress commands
- 
- ┃ ┗ 📂 index.js            # Global configurations
- 
- ┣ 📂 plugins/              # Cypress plugins  
- 
-📄 cypress.config.js        # Cypress configuration file  
-📄 package.json             # Dependencies & scripts  
 
-🚀 **Installation & Setup**
+ ┃ ┣ 📜 commands.js         # Custom Cypress commands
 
-1️⃣ Clone the Repository:
+ ┃ ┗ 📜 e2e.js              # Global configurations
 
-git clone https://github.com/rhein8th/SauceDemoAutomation.git
+📜 cypress.config.js         # Cypress configuration file  
 
-cd SauceDemoAutomation
+📜 package.json             # Dependencies & scripts 
 
-2️⃣ Install Dependencies:
 
-npm install
+## 🚀 Installation & Setup
 
-3️⃣ Run Cypress Tests:
+### 1️⃣ Clone the Repository:
 
-Open Cypress UI:
+`git clone https://github.com/rhein8th/SauceDemoAutomation.git`
 
-npx cypress open
+`cd SauceDemoAutomation`
 
-Run in Headed Mode:
+### 2️⃣ Install Dependencies:
 
-npx cypress run
+`npm install`
+
+### 3️⃣ Run Cypress Tests:
+
+* **Open Cypress UI:**
+
+`npx cypress open`
+
+* **Run in Headed Mode:**
+
+`npx cypress run`
+
+## 📊 Test Reporting
+
+* **Install mochawesome for test reporting:**
+
+`npm install --save-dev mochawesome`
+
+* **Run tests with reporting:**
+
+`npx cypress run --reporter mochawesome`
+
 
 🔗 **Resources**
 
-Cypress Documentation
-
-Udemy - (https://www.udemy.com/course/cypress-tutorial/)
-
-SauceDemo Website (https://www.saucedemo.com/)
+* [Cypress Documentation](https://docs.cypress.io/)
+* [Udemy Cypress Course](https://www.udemy.com/course/cypress-tutorial/)
+* [SauceDemo Website](https://www.saucedemo.com/)
 
