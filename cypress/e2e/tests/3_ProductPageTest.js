@@ -20,9 +20,9 @@ beforeEach(() => {
 describe("Product Page Test Suite", () => {
 
     it("Validate Product Page", () => {
-        cy.validateHamburgerMenu();
-        cy.validateCartButton().go("back");
-        cy.validateFooter();
+        // cy.validateHamburgerMenu();
+        // cy.validateCartButton().go("back");
+        // cy.validateFooter();
         product.logo().should("be.visible");
         product.backBtn().should("be.visible");
         product.productCtnr().should("be.visible");

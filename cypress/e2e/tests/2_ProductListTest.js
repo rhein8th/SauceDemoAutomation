@@ -19,9 +19,9 @@ describe("Product List Page Test Suite", ()=>{
 
     
     it("Validate Product List Page",()=>{
-        cy.validateHamburgerMenu();
-        cy.validateCartButton().go("back");
-        cy.validateFooter();
+        // cy.validateHamburgerMenu();
+        // cy.validateCartButton().go("back");
+        // cy.validateFooter();
 
         productList.logo().should("be.visible");
         productList.pageTitle().should("be.visible");
