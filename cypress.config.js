@@ -1,11 +1,17 @@
 const { defineConfig } = require("cypress");
 
+
+console.log('cypress.config.js loaded!'); // <-- Add this line
+
+
 module.exports = defineConfig({
   defaultCommandTimeout: 6000,
   pageLoadTimeout: 50000,
   env: {
     url: "https://www.saucedemo.com/",
     environment: "dev",
+    grepFilterSpecs: true,
+    grepOmitFiltered: true
   },
 
   reporter: "cypress-mochawesome-reporter",
@@ -18,6 +24,7 @@ module.exports = defineConfig({
     inlineAssets: true,
     saveJson: false,
   },
+
   video: true,
   videosFolder: "cypress/reports/videos",
   screenshotOnRunFailure: true,
@@ -30,8 +37,12 @@ module.exports = defineConfig({
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
     excludeSpecPattern: ["**/pages/**", "**/sharedComponents/**"],
 
+    supportFile: 'cypress/support/e2e.js', // <--- Ensure this path is correct!
+
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on);
+      require('@cypress/grep/src/plugin')(config); // ✅ THIS ONE WORKS
+      return config;
     },
   },
 });

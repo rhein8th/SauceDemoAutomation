@@ -13,6 +13,11 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+console.log('Cypress support file loaded - @cypress/grep should be active!');
+
 // Import commands.js using ES2015 syntax:
+import "@cypress/grep";
 import "./commands";
 import "cypress-mochawesome-reporter/register";
+
+
