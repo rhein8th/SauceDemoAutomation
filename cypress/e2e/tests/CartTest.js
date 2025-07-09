@@ -17,9 +17,9 @@ beforeEach(() => {
     cy.login();
 });
 
-describe("Cart Page Test Suite", () => {
+describe("Cart Page Test Suite", { tags: ["@regression"] }, () => {
 
-    it("Validate Adding Products to Cart from Product List page", () => {
+    it("Validate Adding Products to Cart from Product List page", { tags: ["@smoke"] }, () => {
         let clickCount = 0;
         const addedProducts = [];
     
@@ -56,7 +56,7 @@ describe("Cart Page Test Suite", () => {
         });
     });
  
-    it("Validate Adding Product to Cart from Product page", () => {
+    it("Validate Adding Product to Cart from Product page", { tags: ["@smoke"] }, () => {
         cy.proceedProductpage();
 
         cy.wrap({}).then((obj) => {

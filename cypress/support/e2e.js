@@ -13,11 +13,19 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-console.log('Cypress support file loaded - @cypress/grep should be active!');
 
 // Import commands.js using ES2015 syntax:
-import "@cypress/grep";
+
+import registerCypressGrep from '@cypress/grep/src/support'
+registerCypressGrep()
+//import "@cypress/grep";
 import "./commands";
 import "cypress-mochawesome-reporter/register";
+
+
+//GREP COMMANDS
+//npx cypress run --env grepTags='@reg'
+//npx cypress run --env grepTags=@smoke
+//npx cypress run --spec "cypress/e2e/tests/LoginTest.js" --env grepTags=@smoke
 
 

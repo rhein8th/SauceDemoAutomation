@@ -1,9 +1,5 @@
 const { defineConfig } = require("cypress");
 
-
-console.log('cypress.config.js loaded!'); // <-- Add this line
-
-
 module.exports = defineConfig({
   defaultCommandTimeout: 6000,
   pageLoadTimeout: 50000,
@@ -34,14 +30,23 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     viewportWidth: 1920,
     viewportHeight: 1080,
-    specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
+    //specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
+    specPattern: [
+      "cypress/e2e/tests/LoginTest.js",
+      "cypress/e2e/tests/ProductListTest.js",
+      "cypress/e2e/tests/ProductPageTest.js",
+      "cypress/e2e/tests/CartTest.js",
+      "cypress/e2e/tests/CheckoutTest.js",
+      "cypress/e2e/tests/ConfirmCheckoutTest.js",
+      "cypress/e2e/tests/CheckoutCompleteTest.js"
+    ],
     excludeSpecPattern: ["**/pages/**", "**/sharedComponents/**"],
 
-    supportFile: 'cypress/support/e2e.js', // <--- Ensure this path is correct!
+    supportFile: 'cypress/support/e2e.js',
 
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on);
-      require('@cypress/grep/src/plugin')(config); // ✅ THIS ONE WORKS
+      require('@cypress/grep/src/plugin')(config);
       return config;
     },
   },

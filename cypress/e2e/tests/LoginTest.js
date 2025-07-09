@@ -12,16 +12,16 @@ before(()=>{
     cy.visit("/");
  })
 
-describe("Login Page Test Suite ", ()=>{
+describe("Login Page Test Suite ", { tags: ["@regression"] }, ()=>{
    
-    it("Validate Login page", { tags: ["@reg" , "@uniqueLoginTest"] }, ()=>{
+    it("Validate Login page", ()=>{
         logIn.logo().should("be.visible");
         logIn.usernameInput().should("be.visible");
         logIn.passwordInput().should("be.visible");
         logIn.loginBtn().should("be.visible");
     });
     
-    it("Validate Invalid Credentials", { tags: ["@reg"] }, ()=>{
+    it("Validate Invalid Credentials", ()=>{
         cy.fixture("users").then((users) => {
             const username = users.invalidUser.invalidUsername;
             const password = users.invalidUser.invalidPassword;
@@ -36,10 +36,8 @@ describe("Login Page Test Suite ", ()=>{
         });
     });
    
-    it("Validate Successful Login", { tags: ["@smoke", "@reg"] },()=>{
+    it("Validate Successful Login", { tags: ["@smoke"] },()=>{
             cy.login();
     });
-
-
 
 });

@@ -21,9 +21,9 @@ beforeEach(() => {
     cy.login();
 });
 
-describe("Checkout Complete Page Test Suite", () => {
+describe("Checkout Complete Page Test Suite", { tags: ["@regression"] }, () => {
 
-    it("Validate Checkout Complete Page", () => {
+    it("Validate Checkout Complete Page", { tags: ["@smoke"] },() => {
         cy.fillUpCheckoutPage();
         confirmPage.finishBtn().click();
         cy.url().should("includes", "/checkout-complete");
