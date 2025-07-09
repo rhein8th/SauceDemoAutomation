@@ -17,7 +17,7 @@ beforeEach(() => {
     cy.proceedProductpage(); 
 });
 
-describe("Product Page Test Suite", () => {
+describe("Product Page Test Suite", { tags: ["@regression"] }, () => {
 
     it("Validate Product Page", () => {
         // cy.validateHamburgerMenu();
@@ -33,7 +33,7 @@ describe("Product Page Test Suite", () => {
         product.addToCartBtn().should("be.visible");
     });
 
-    it("Validate Add Product to Cart", () => {
+    it("Validate Add Product to Cart", { tags: ["@smoke"] }, () => {
         
         product.addToCartBtn().click();
         cart.cartBtn().should("have.text", "1");

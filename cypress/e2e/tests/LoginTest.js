@@ -12,7 +12,7 @@ before(()=>{
     cy.visit("/");
  })
 
-describe("Login Page Test Suite", ()=>{
+describe("Login Page Test Suite ", { tags: ["@regression"] }, ()=>{
    
     it("Validate Login page", ()=>{
         logIn.logo().should("be.visible");
@@ -36,10 +36,8 @@ describe("Login Page Test Suite", ()=>{
         });
     });
    
-    it("Validate Successful Login", ()=>{
+    it("Validate Successful Login", { tags: ["@smoke"] },()=>{
             cy.login();
     });
-
-
 
 });

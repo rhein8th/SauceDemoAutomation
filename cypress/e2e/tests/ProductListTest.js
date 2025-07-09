@@ -15,7 +15,7 @@ beforeEach(() => {
   
 });
 
-describe("Product List Page Test Suite", ()=>{
+describe("Product List Page Test Suite", { tags: ["@regression"] }, ()=>{
 
     
     it("Validate Product List Page",()=>{
@@ -133,7 +133,7 @@ describe("Product List Page Test Suite", ()=>{
  
     });
     
-    it("Validate Adding Product to Cart", () => {
+    it("Validate Adding Product to Cart", { tags: ["@smoke"] }, () => {
         let clickCount = 0;
         cy.fixture("product.json").as("prod");
         cy.get("@prod").then((product) => {
