@@ -19,9 +19,9 @@ beforeEach(() => {
     cy.login();
 });
 
-describe("Checkout Page Test Suite", () => {
+describe("Checkout Page Test Suite", { tags: ["@regression"] }, () => {
 
-    it("Validate Confirm Checkout page", () => {
+    it("Validate Confirm Checkout page", { tags: ["@smoke"] }, () => {
         cy.fillUpCheckoutPage();
       
         confirmPage.logo().should("be.visible");
@@ -51,7 +51,7 @@ describe("Checkout Page Test Suite", () => {
         
     });
 
-    it("Validate Sub Total, Tax, and Total Price", () => {
+    it("Validate Sub Total, Tax, and Total Price", { tags: ["@smoke"] }, () => {
         cy.fillUpCheckoutPage();
         confirmPage.subTotal().should("be.visible");
         confirmPage.tax().should("be.visible");

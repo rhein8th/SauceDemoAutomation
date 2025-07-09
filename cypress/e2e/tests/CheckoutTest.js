@@ -17,7 +17,7 @@ beforeEach(() => {
     cy.login();
 });
 
-describe("Checkout Page Test Suite", () => {
+describe("Checkout Page Test Suite", { tags: ["@regression"] }, () => {
 
     it("Validate Checkout page", () => {
         cy.validateCheckoutpage();
@@ -61,7 +61,7 @@ describe("Checkout Page Test Suite", () => {
         });
      })
 
-     it("Validate Proceeding to Confirm Checkout page", () => {
+     it("Validate Proceeding to Confirm Checkout page",{ tags: ["@smoke"] }, () => {
         cy.fillUpCheckoutPage();
      })
 

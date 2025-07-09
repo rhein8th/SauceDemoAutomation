@@ -12,7 +12,9 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@cypress/grep": "^4.1.0",
     "cypress": "^14.1.0",
     "cypress-mochawesome-reporter": "^3.8.2"
   }
 }
+ 
