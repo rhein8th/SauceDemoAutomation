@@ -68,7 +68,7 @@ cd SauceDemoAutomation
 ```text
 npm install
 ```
-
+---
 ### 🧪 Run Cypress Tests
 Open Cypress Test Runner (UI Mode)
 ```text
@@ -98,7 +98,7 @@ npx cypress run --spec "cypress/e2e/tests/LoginTest.js" --env grepTags=@smoke
 ```text
 npx cypress run --browser chrome --env grep="Cart"
 ```
-
+---
 ## 📊 Test Reporting (Mochawesome)
 ```text
 Install mochawesome (if not yet):
@@ -109,11 +109,11 @@ npm install --save-dev mochawesome
 ```text
 npx cypress run --reporter mochawesome
 ```
-
+---
 ## 🔗 Resources
 Cypress Documentation
 SauceDemo Website
 Udemy Cypress Course
-
+---
 ## 👨‍💻 Author
 Maintained by [@rhein8th](https://github.com/rhein8th/)
