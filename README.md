@@ -62,40 +62,40 @@ This test framework is designed to:
 git clone https://github.com/rhein8th/SauceDemoAutomation.git
 cd SauceDemoAutomation
 
-2️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
 npm install
 
-🧪 Run Cypress Tests
+### 🧪 Run Cypress Tests
 Open Cypress Test Runner (UI Mode)
 npx cypress open
 
-Run All Tests (Headless)
+#### Run All Tests (Headless)
 npm test
 
-Run with Specific Browsers
+### Run with Specific Browsers
 npm run chrome
 npm run edge
 npm run firefox
 
-Filter Tests Using @cypress/grep (if installed)
+#### Filter Tests Using @cypress/grep (if installed)
 npx cypress run --env grepTags=@reg
 npx cypress run --env grepTags=@smoke
 npx cypress run --spec "cypress/e2e/tests/LoginTest.js" --env grepTags=@smoke
 
-You can also combine grep with scripts:
+#### You can also combine grep with scripts:
 npx cypress run --browser chrome --env grep="Cart"
 
-📊 Test Reporting (Mochawesome)
+### 📊 Test Reporting (Mochawesome)
 Install mochawesome (if not yet):
 npm install --save-dev mochawesome
 
-Run tests and generate reports:
+### Run tests and generate reports:
 npx cypress run --reporter mochawesome
 
-🔗 Resources
+## 🔗 Resources
 Cypress Documentation
 SauceDemo Website
 Udemy Cypress Course
 
-👨‍💻 Author
+## 👨‍💻 Author
 Maintained by @rhein8th
