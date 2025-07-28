@@ -51,7 +51,7 @@ This test framework is designed to:
  ┃ ┗ 📜 e2e.js            # Global setup/config
 📜 cypress.config.js      # Cypress configuration
 📜 package.json           # Project scripts & dependencies
-
+```
 
 
 ---
