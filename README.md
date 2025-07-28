@@ -92,14 +92,14 @@ npm run firefox
 npx cypress run --env grepTags=@reg
 npx cypress run --env grepTags=@smoke
 npx cypress run --spec "cypress/e2e/tests/LoginTest.js" --env grepTags=@smoke
-``
+```
 
 #### You can also combine grep with scripts:
 ```text
 npx cypress run --browser chrome --env grep="Cart"
 ```
 
-### 📊 Test Reporting (Mochawesome)
+## 📊 Test Reporting (Mochawesome)
 ```text
 Install mochawesome (if not yet):
 npm install --save-dev mochawesome
@@ -116,4 +116,4 @@ SauceDemo Website
 Udemy Cypress Course
 
 ## 👨‍💻 Author
-Maintained by @rhein8th
+Maintained by (@rhein8th)SauceDemo](https://www.saucedemo.com/)
