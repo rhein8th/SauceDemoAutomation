@@ -38,18 +38,20 @@ This test framework is designed to:
 
 ## 🧱 Project Structure (POM-Based)
 
+```text
 📦 cypress/
-┣ 📂 e2e/ # Entry point test files
-┣ 📂 pages/ # Page Object Models
-┣ 📂 sharedComponents/ # Reusable page components
-┣ 📂 tests/ # Feature-specific tests
-┣ 📂 fixtures/ # Static test data
-┣ 📂 reports/ # Generated test reports
+ ┣ 📂 e2e/                # Entry point test files
+ ┣ 📂 pages/              # Page Object Models
+ ┣ 📂 sharedComponents/   # Reusable page components
+ ┣ 📂 tests/              # Feature-specific tests
+┣ 📂 fixtures/            # Static test data
+┣ 📂 reports/             # Generated test reports
 ┣ 📂 support/
-┃ ┣ 📜 commands.js # Custom Cypress commands
-┃ ┗ 📜 e2e.js # Global setup/config
-📜 cypress.config.js # Cypress configuration
-📜 package.json # Project scripts & dependencies
+ ┃ ┣ 📜 commands.js       # Custom Cypress commands
+ ┃ ┗ 📜 e2e.js            # Global setup/config
+📜 cypress.config.js      # Cypress configuration
+📜 package.json           # Project scripts & dependencies
+
 
 
 ---
