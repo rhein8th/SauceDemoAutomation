@@ -116,4 +116,4 @@ SauceDemo Website
 Udemy Cypress Course
 
 ## 👨‍💻 Author
-Maintained by (@rhein8th)SauceDemo](https://www.saucedemo.com/)
+Maintained by [@rhein8th](https://github.com/rhein8th/)
