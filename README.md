@@ -111,10 +111,9 @@ npx cypress run --reporter mochawesome
 ```
 ---
 ## 🔗 Resources
-
-Cypress Documentation
-SauceDemo Website
-Udemy Cypress Course
+- [Cypress Documentation](https://docs.cypress.io)
+- [SauceDemo Website](https://www.saucedemo.com/)
+- [Udemy Cypress Course](https://www.udemy.com/course/cypress-tutorial/)
 ---
 ## 👨‍💻 Author
 Maintained by [@rhein8th](https://github.com/rhein8th/)
